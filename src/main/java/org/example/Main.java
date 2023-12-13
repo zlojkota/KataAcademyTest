@@ -46,27 +46,17 @@ public class Main
                 default -> throw new calcExceptions(127, "Error in Matcher arabic. Magic!");
             };
         } else if (matcher.group("aroman")!=null) {
-            int arabianResult;
-            switch (actionToInt(matcher.group("actionroman"))){
+            int arabianResult = switch (actionToInt(matcher.group("actionroman"))) {
                 //-
-                case 0:
-                    arabianResult = romanToArabic(matcher.group("aroman"))-romanToArabic(matcher.group("broman"));
-                    break;
+                case 0 -> romanToArabic(matcher.group("aroman")) - romanToArabic(matcher.group("broman"));
                 //+
-                case 1:
-                    arabianResult = romanToArabic(matcher.group("aroman"))+romanToArabic(matcher.group("broman"));
-                    break;
+                case 1 -> romanToArabic(matcher.group("aroman")) + romanToArabic(matcher.group("broman"));
                 //*
-                case 2:
-                    arabianResult = romanToArabic(matcher.group("aroman"))*romanToArabic(matcher.group("broman"));
-                    break;
+                case 2 -> romanToArabic(matcher.group("aroman")) * romanToArabic(matcher.group("broman"));
                 // /
-                case 3:
-                    arabianResult = romanToArabic(matcher.group("aroman"))/romanToArabic(matcher.group("broman"));
-                    break;
-                default:
-                    throw new calcExceptions(127,"Error in Matcher roman. Magic!");
-            }
+                case 3 -> romanToArabic(matcher.group("aroman")) / romanToArabic(matcher.group("broman"));
+                default -> throw new calcExceptions(127, "Error in Matcher roman. Magic!");
+            };
             if (arabianResult <1 ){
                 throw new calcExceptions(2,Integer.toString(arabianResult));
             }
