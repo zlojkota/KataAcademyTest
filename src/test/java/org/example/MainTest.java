@@ -57,12 +57,7 @@ class MainTest {
         for (Map.Entry<String, String> entry : negative.entrySet()) {
             String k = entry.getKey();
             String v = entry.getValue();
-            calcExceptions thrown = Assertions.assertThrows(calcExceptions.class, new Executable() {
-                @Override
-                public void execute() throws Throwable {
-                    Main.calc(k);
-                }
-            }, "Exception for " + k + " was expected");
+            calcExceptions thrown = Assertions.assertThrows(calcExceptions.class, () -> Main.calc(k), "Exception for " + k + " was expected");
 
             Assertions.assertEquals(v, thrown.getMessage());
 
