@@ -2,7 +2,7 @@ package org.example;
 
 class calcExceptions extends Exception {
 
-    private String detailMessage;
+    private final String detailMessage;
 
     public calcExceptions(int numberEx, String Payload) {
         switch (numberEx) {

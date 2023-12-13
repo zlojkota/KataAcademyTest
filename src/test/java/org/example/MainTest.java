@@ -3,14 +3,15 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class MainTest {
 
-    private static Map<String,String> positive = new HashMap<>();
-    private static Map<String,String> negative = new HashMap<>();
+    private static final Map<String,String> positive = new HashMap<>();
+    private static final Map<String,String> negative = new HashMap<>();
     @BeforeAll
     static void setUp() {
         positive.put("1 + 2",    "3");
@@ -55,9 +56,12 @@ class MainTest {
     void calcNegative() {
         negative.forEach((k,v)-> {
 
-	calcExceptions thrown = Assertions.assertThrows(calcExceptions.class, () -> {
-		Main.calc(k);
-	}, "Exception for "+k+" was expected");
+	calcExceptions thrown = Assertions.assertThrows(calcExceptions.class, new Executable() {
+        @Override
+        public void execute() throws Throwable {
+            Main.calc(k);
+        }
+    }, "Exception for "+k+" was expected");
 
 	Assertions.assertEquals(v, thrown.getMessage());
 

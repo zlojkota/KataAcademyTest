@@ -30,22 +30,21 @@ public class Main
             throw new calcExceptions(1,input);
         }
         if (matcher.group("aarabic")!=null){
-            switch (actionToInt(matcher.group("actionarabic"))){
+            return switch (actionToInt(matcher.group("actionarabic"))) {
                 //-
-                case 0:
-                    return Integer.toString(Integer.parseInt(matcher.group("aarabic"))-Integer.parseInt(matcher.group("barabic")));
+                case 0 ->
+                        Integer.toString(Integer.parseInt(matcher.group("aarabic")) - Integer.parseInt(matcher.group("barabic")));
                 //+
-                case 1:
-                    return Integer.toString(Integer.parseInt(matcher.group("aarabic"))+Integer.parseInt(matcher.group("barabic")));
+                case 1 ->
+                        Integer.toString(Integer.parseInt(matcher.group("aarabic")) + Integer.parseInt(matcher.group("barabic")));
                 //*
-                case 2:
-                    return Integer.toString(Integer.parseInt(matcher.group("aarabic"))*Integer.parseInt(matcher.group("barabic")));
+                case 2 ->
+                        Integer.toString(Integer.parseInt(matcher.group("aarabic")) * Integer.parseInt(matcher.group("barabic")));
                 // /
-                case 3:
-                    return Integer.toString(Integer.parseInt(matcher.group("aarabic"))/Integer.parseInt(matcher.group("barabic")));
-                default:
-                    throw new calcExceptions(127,"Error in Matcher arabic. Magic!");
-            }
+                case 3 ->
+                        Integer.toString(Integer.parseInt(matcher.group("aarabic")) / Integer.parseInt(matcher.group("barabic")));
+                default -> throw new calcExceptions(127, "Error in Matcher arabic. Magic!");
+            };
         } else if (matcher.group("aroman")!=null) {
             int arabianResult;
             switch (actionToInt(matcher.group("actionroman"))){
