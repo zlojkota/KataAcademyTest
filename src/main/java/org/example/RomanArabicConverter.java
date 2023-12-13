@@ -12,7 +12,7 @@ class RomanArabicConverter {
 
         int i = 0;
 
-        while ((romanNumeral.length() > 0) && (i < romanNumerals.size())) {
+        while ((!romanNumeral.isEmpty()) && (i < romanNumerals.size())) {
             RomanNumeral symbol = romanNumerals.get(i);
             if (romanNumeral.startsWith(symbol.name())) {
                 result += symbol.getValue();
@@ -21,7 +21,7 @@ class RomanArabicConverter {
                 i++;
             }
         }
-        if (romanNumeral.length() > 0) {
+        if (!romanNumeral.isEmpty()) {
             throw new IllegalArgumentException(input + " cannot be converted to a Roman Numeral");
         }
 
